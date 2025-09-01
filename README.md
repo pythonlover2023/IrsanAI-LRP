@@ -49,11 +49,6 @@ IrsanAI-LRP ist ein **"Only-One-Prompt"-System** für die Entwicklung von LLM-ge
 | **LLM-Sandbox-Limitierungen** | Lokale Ausführung für kritische Operationen |  
 | **Unvollständige Systeminformationen** | Automatische Installation von Abhängigkeiten für präzisere Erkennung |  
 
-## 🚀 NÄCHSTE SCHRITTE  
-1. **GitHub-Repo erstellen**: [github.com/new](https://github.com/new)  
-2. **GitHub Pages aktivieren**: Settings → Pages → Branch `master`, Folder `/web-tool`  
-3. **Teile den Link**: `DEIN_GITHUB_NAME.github.io/IrsanAI-LRP`  
-
 > ✅ **ERFOLGSKRITERIUM**: Wenn jemand das System nach 5 Minuten verstehen und nutzen kann, ohne dass er sich mit Validator-Details auseinandersetzen muss.
 
 ---
