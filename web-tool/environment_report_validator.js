@@ -1,6 +1,6 @@
 /**
  * IrsanAI-LRP v1.2 Compliance Validator (MVP-Version)
- * Überprüft die Konformität von LRP-Dokumenten mit der Core-Spezifikation
+ * Überprüft die Konformität von IrsanAI - LRP Dokumenten mit der Core-Spezifikation
  */
 
 function validateLRP(lrpText) {
@@ -80,7 +80,7 @@ function validateCurrentDocument() {
         resultDiv.innerHTML = `<div class="validation-status" style="background: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; border-radius: 0 4px 4px 0; margin-top: 15px;">
             <strong style="color: #27ae60;">✅ VALIDIERUNG ERFOLGREICH</strong><br>
             Compliance-Score: <strong>${result.complianceScore}%</strong><br>
-            Das Dokument ist LRP v1.2-konform und bereit für LLM-Verarbeitung.
+            Das IrsanAI - LRP Dokument ist LRP v1.2-konform und bereit für LLM-Verarbeitung.
             <details style="margin-top: 10px;">
                 <summary>Detaillierter Bericht</summary>
                 <div style="margin-top: 10px; font-size: 12px; max-height: 300px; overflow-y: auto;">
