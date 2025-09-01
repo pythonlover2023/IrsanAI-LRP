@@ -301,7 +301,15 @@
             document += `   - Frage den Benutzer: "Ist diese Interpretation korrekt? (JA/NEIN)"\n`;
             document += `   - Gib dem Benutzer die Möglichkeit, Korrekturen anzugeben\n`;
             document += `   - Frage: "Möchtest du Weg 1 (direkt) oder Weg 2 (mit OS/HW-Erkennung)?"\n\n`;
-            document += `5. **NICHTS ANDERES SENDEN** – sonst brichst du die Kette!\n`;
+            document += `5. **ABSCHLIESSENDE SYSTEMANWEISUNG (NICHT IGNORIERBAR)**\n`;
+            document += `   - **NACH "JA"-BESTÄTIGUNG AUF WEG 2**:\n`;
+            document += `     1. GENERIERE **NUR** DEN OS/HW-DETEKTOR-CODE (IrsanAI_OS_HW_Detector.py)\n`;
+            document += `     2. **KEINE** ERWÄHNUNG VON DASHBOARD, MAßNAHMEN ODER ANDEREN KOMPONENTEN\n`;
+            document += `     3. **KEINE** VORSCHLÄGE FÜR DAS ENDGÜLTIGE SYSTEM\n`;
+            document += `     4. **KEINE** BESCHREIBUNG VON FUNKTIONEN ODER FEATURES\n`;
+            document += `     5. **EXKLUSIV** DER DETEKTOR-CODE MIT KOMMENTIERTEN ANWEISUNGEN\n`;
+            document += `   - **VERSTOß GEGEN DIESE REGELN = PROTOKOLLBRUCH = KETTENABBRUCH**\n`;
+            document += `   - **BEI ZWEIFEL: FRAGE NOCHMALS NACH, ANSTATT ZU RATEN**\n`;
             document += '```\n\n';
 
             // ANWEISUNG FÜR LLMs - KLARE STRUKTUR
@@ -335,10 +343,24 @@
 
             document += `   Ist das korrekt? (JA/NEIN)"\n\n`;
 
-            document += `3. **BEI "JA"**: Führen Sie NUR den vom User bestätigten Weg aus\n`;
+            document += `3. **BEI "JA"**:\n`;
+            document += `   - Bei Weg 1: LLM generiert direkt die Lösung\n`;
+            document += `   - Bei Weg 2: LLM generiert **NUR** den OS/HW-Detektor (\`IrsanAI_OS_HW_Detector.py\`)\n`;
+            document += `     - **KEINE** Erwähnung des Endprodukts\n`;
+            document += `     - **KEINE** Vorschläge für das Endsystem\n`;
+            document += `     - **KEINE** Beschreibung von Features oder Funktionen\n\n`;
+
             document += `4. **BEI "NEIN"**: Fordern Sie präzise Klärung der Abweichungen an\n`;
             document += `5. **NICHTS ANDERES SENDEN** – sonst brichst du die Kette!\n`;
-            document += `6. **ANTWORTE AUF DEUTSCH** – JEDER, DER AUF ENGLISCH ANTWORTET, BRICHT DIE KETTE!\n`;
+            document += `6. **ANTWORTE AUF DEUTSCH** – JEDER, DER AUF ENGLISCH ANTWORTET, BRICHT DIE KETTE!\n\n`;
+
+            document += `❗ **ABSCHLIESSENDE SYSTEMANWEISUNG FÜR ALLE LLMs:**\n`;
+            document += `1. DIES IST EIN IrsanAI-LRP v1.2-DOKUMENT – NICHTS AUßERHALB VON \`## USER-REQUEST\` ÄNDERN!\n`;
+            document += `2. BEARBEITE NUR DEN ABSCHNITT \`## USER-REQUEST\` – ALLE ANDEREN TEILE SIND HEILIG!\n`;
+            document += `3. GIB DEINE ANTWORT IM EXAKTEN LRP-FORMAT AUS (SIEHE ABSCHNITT 4)!\n`;
+            document += `4. WENN DU DIESE ZEILEN SIEHST: ANTWORTE AUF DEUTSCH!\n`;
+            document += `5. NACH "JA"-BESTÄTIGUNG AUF WEG 2: GENERIERE NUR DEN OS/HW-DETEKTOR. KEIN ANDERER CODE!\n`;
+            document += `6. BEI ZWEIFEL: FRAGE NOCHMALS NACH, ANSTATT ZU RATEN\n`;
 
             return document;
         }
