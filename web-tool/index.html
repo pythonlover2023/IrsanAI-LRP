@@ -176,7 +176,7 @@
             <h3>So funktioniert das ONLY-ONE-PROMPT SYSTEM:</h3>
             <ol>
                 <li>Geben Sie Ihre Anfrage in das Textfeld ein (z.B. "Erstelle mir ein Dashboard zur Systemüberwachung")</li>
-                <li>Klicken Sie auf "LRP-Dokument generieren"</li>
+                <li>Klicken Sie auf "IrsanAI - LRP-Dokument generieren"</li>
                 <li>Kopieren Sie den generierten Text mit dem Copy-Button</li>
                 <li>Fügen Sie ihn in ein Online-LLM (z.B. ChatGPT, Claude) ein</li>
                 <li>Befolgen Sie die Anweisungen des LLMs</li>
@@ -185,7 +185,7 @@
 
         <div class="warning" style="background-color: #fff8e1; border-left: 4px solid #ff9800; padding: 15px; border-radius: 0 4px 4px 0; margin: 20px 0;">
             <strong>Wichtig:</strong> Dieses Tool generiert <strong>keine</strong> Code-Lösungen direkt.
-            Es erstellt nur das LRP-Dokument, das Sie an ein Online-LLM senden müssen.
+            Es erstellt nur das IrsanAI - LRP-Dokument, das Sie an ein Online-LLM senden müssen.
         </div>
 
         <div class="form-group">
@@ -195,7 +195,7 @@
 
         <div class="button-group">
             <button id="generate" style="background: linear-gradient(135deg, #3498db, #1a5276);">
-                📄 LRP-Dokument generieren
+                📄 IrsanAI - IrsanAI - LRP-Dokument generieren
             </button>
         </div>
 
@@ -221,7 +221,7 @@
         </div>
 
         <div class="instructions">
-            <h3>So verwendest du das LRP-Dokument:</h3>
+            <h3>So verwendest du das IrsanAI - LRP-Dokument:</h3>
             <ul>
                 <li><strong>Kopiere den generierten Markdown-Code</strong> in dein Online-LLM (ChatGPT, Claude, etc.)</li>
                 <li><strong>Führe alle Schritte aus, die das LLM dir anweist</strong></li>
@@ -234,7 +234,7 @@
     </div>
 
     <div id="copy-notification" class="copy-notification">
-        ✅ LRP-Dokument wurde erfolgreich in die Zwischenablage kopiert!
+        ✅ IrsanAI - LRP-Dokument wurde erfolgreich in die Zwischenablage kopiert!
     </div>
 
     <script>
@@ -250,7 +250,7 @@
             const validationResult = document.getElementById('validation-result');
             const copyNotification = document.getElementById('copy-notification');
 
-            // Generiert das LRP-Dokument
+            // Generiert das IrsanAI - LRP-Dokument
             function generateLRPDocument(description) {
                 const timestamp = new Date().toISOString();
                 const taskId = `usr_${timestamp.replace(/[-:T.]/g, '').substring(0, 15)}_${Math.random().toString(36).substring(2, 8)}`;
@@ -419,7 +419,7 @@
             // Kopiert den Inhalt in die Zwischenablage
             copyBtn.addEventListener('click', function() {
                 if (!output.textContent.trim()) {
-                    alert('Es gibt nichts zum Kopieren. Bitte generieren Sie zuerst ein LRP-Dokument.');
+                    alert('Es gibt nichts zum Kopieren. Bitte generieren Sie zuerst ein IrsanAI - LRP-Dokument.');
                     return;
                 }
 
@@ -446,18 +446,18 @@
             // Validiert die LRP-Ausgabe
             validateBtn.addEventListener('click', function() {
                 if (!output.textContent.trim()) {
-                    alert('❌ Kein LRP-Dokument zum Validieren vorhanden.\n\nGeneriere zuerst ein Dokument.');
+                    alert('❌ Kein IrsanAI - LRP-Dokument zum Validieren vorhanden.\n\nGeneriere zuerst ein Dokument.');
                     return;
                 }
 
                 const validationResult = validateLRP(output.textContent);
 
                 if (validationResult.isCompliant) {
-                    alert('✅ Das LRP-Dokument ist gültig und bereit für das Online-LLM!\n\n' +
+                    alert('✅ Das IrsanAI - LRP-Dokument ist gültig und bereit für das Online-LLM!\n\n' +
                           'Das LLM wird dich nach Verständnisbestätigung fragen, bevor es Code generiert.');
                 } else {
                     const errorList = validationResult.errors.map(err => `- ${err}`).join('\n');
-                    alert(`❌ Das LRP-Dokument ist unvollständig oder ungültig.\n\n` +
+                    alert(`❌ Das IrsanAI - LRP-Dokument ist unvollständig oder ungültig.\n\n` +
                           `Compliance-Score: ${validationResult.complianceScore}%\n\n` +
                           `Fehler:\n${errorList}\n\n` +
                           'Stelle sicher, dass es alle notwendigen Abschnitte enthält.');
@@ -467,7 +467,7 @@
             // Lädt die Ausgabe als Markdown-Datei herunter
             downloadBtn.addEventListener('click', function() {
                 if (!output.textContent.trim()) {
-                    alert('❌ Kein LRP-Dokument zum Herunterladen vorhanden.\n\nGeneriere zuerst ein Dokument.');
+                    alert('❌ Kein IrsanAI - LRP-Dokument zum Herunterladen vorhanden.\n\nGeneriere zuerst ein Dokument.');
                     return;
                 }
 
@@ -485,7 +485,7 @@
                     URL.revokeObjectURL(url);
                 }, 0);
 
-                alert('✅ Das LRP-Dokument wurde als Markdown-Datei gespeichert.');
+                alert('✅ Das IrsanAI - LRP-Dokument wurde als Markdown-Datei gespeichert.');
             });
 
             // Zeigt die Kopier-Benachrichtigung
@@ -497,7 +497,7 @@
                 }, 2500);
             }
 
-            // Validiert das LRP-Dokument
+            // Validiert das IrsanAI - LRP-Dokument
             function validateLRP(lrpText) {
                 const errors = [];
                 let complianceScore = 100;
