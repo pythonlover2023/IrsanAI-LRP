@@ -1,7 +1,7 @@
 # IrsanAI-LRP v1.2 – ONLY-ONE-PROMPT SYSTEM  
 *Ein standardisiertes Protokoll für fehlerfreie LLM-Kommunikation mit Hardware-Optimierung*
 
-![IrsanAI-LRP Workflow](docs/images/workflow.png)
+![IrsanAI-LRP Workflow](docs/images/workflow-IrsanAI-LRP.png)
 
 ## 🌐 WAS IST IrsanAI-LRP?  
 IrsanAI-LRP ist ein **"Only-One-Prompt"-System** für die Entwicklung von LLM-generiertem Code mit **verpflichtender Umweltanalyse**. Es stellt sicher, dass:  
