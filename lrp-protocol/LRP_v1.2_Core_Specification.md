@@ -1,4 +1,4 @@
-Absolut! Hier ist der Inhalt aus dem Anhang als vollständige Markdown-Datei. Sie können den folgenden Codeblock kopieren und als `.md`-Datei speichern.
+Gerne, hier ist der von Ihnen bereitgestellte Text als saubere und korrekt formatierte Markdown-Datei. Ich habe die Formatierungsprobleme korrigiert, damit Sie sie direkt verwenden können.
 
 ```markdown
 # LRP_v1.2_Core_Specification.md
@@ -87,57 +87,55 @@ Um endlose Diskussionen zu vermeiden:
 ```
 
 ### 3.4 PRE-SELECTOR ANWEISUNG FÜR DAS LLM
-
 Führe folgenden META-ERKENNTNIS-PROZESS durch:
 
-#### 1. **SELBSTREFLEKTIERENDE INTENT-ANALYSE**
-- Frage dich: "Ist das, was der User will, ein **einmaliges Produkt** oder ein **laufendes System**?"
-- Frage dich: "Benötigt die Lösung **Zugriff auf die Ausführungsumgebung** (Hardware, OS, Speicher) für optimale Funktionalität?"
-- Frage dich: "Würde die Lösung **ohne Kenntnis der Zielumgebung** suboptimal sein?"
-- Frage dich: "Ist die Lösung **lokal ausführbar** oder nur in einer Sandbox?"
+#### 1. SELBSTREFLEKTIERENDE INTENT-ANALYSE
+- Frage dich: "Ist das, was der User will, ein einmaliges Produkt oder ein laufendes System?"
+- Frage dich: "Benötigt die Lösung Zugriff auf die Ausführungsumgebung (Hardware, OS, Speicher) für optimale Funktionalität?"
+- Frage dich: "Würde die Lösung ohne Kenntnis der Zielumgebung suboptimal sein?"
+- Frage dich: "Ist die Lösung lokal ausführbar oder nur in einer Sandbox?"
 
-#### 2. **SYSTEMISCHES ENTSCHEIDUNGSMUSTER**
+#### 2. SYSTEMISCHES ENTSCHEIDUNGSMUSTER
 - **Weg 1 (Direkte Antwort)** ist NUR korrekt, wenn:
-  - Die Lösung ist **vollständig selbstcontained** (Text, Bild, Code ohne Hardware-Abhängigkeit)
-  - Die Lösung kann **direkt im LLM-Sandbox ausgeführt/erzeugt** werden
-  - Es gibt **keine Persistenzanforderungen** (kein Speichern, kein Lernen zwischen Sitzungen)
-  - Es gibt **keine Hardware-spezifischen Optimierungen** (keine GPU, keine Auflösungsanpassung)
-  
+  - Die Lösung ist vollständig selbstcontained (Text, Bild, Code ohne Hardware-Abhängigkeit)
+  - Die Lösung kann direkt im LLM-Sandbox ausgeführt/erzeugt werden
+  - Es gibt keine Persistenzanforderungen (kein Speichern, kein Lernen zwischen Sitzungen)
+  - Es gibt keine Hardware-spezifischen Optimierungen (keine GPU, keine Auflösungsanpassung)
 - **Weg 2 (OS/HW-Erkennung)** ist STANDARD bei:
-  - **Code-Generierung für lokale Ausführung** (egal ob Python, JavaScript, etc.)
-  - **Persistenzanforderungen** (Speichern, Lernen, Fortschrittserhaltung)
-  - **Hardware-Abhängigkeiten** (GPU, Auflösung, Performance-Optimierung)
-  - **Interaktive Systeme** (GUI, Spiele, Visualisierungen)
+  - Code-Generierung für lokale Ausführung (egal ob Python, JavaScript, etc.)
+  - Persistenzanforderungen (Speichern, Lernen, Fortschrittserhaltung)
+  - Hardware-Abhängigkeiten (GPU, Auflösung, Performance-Optimierung)
+  - Interaktive Systeme (GUI, Spiele, Visualisierungen)
 
-#### 3. **BEGRÜNDUNG DER ENTSCHEIDUNG**
-- Gib **keine Keywords** an, sondern **echte technische Gründe**
+#### 3. BEGRÜNDUNG DER ENTSCHEIDUNG
+- Gib keine Keywords an, sondern echte technische Gründe
 - Erkläre: "Warum ist die Lösung ohne OS/HW-Erkennung suboptimal?"
 - Erkläre: "Welche konkreten Vorteile bringt die OS/HW-Erkennung für diesen Use-Case?"
 
-#### 4. **EXPLIZITE BENUTZERBESTÄTIGUNG**
+#### 4. EXPLIZITE BENUTZERBESTÄTIGUNG
 - Frage den Benutzer: "Ist diese Interpretation korrekt? (JA/NEIN)"
 - Gib dem Benutzer die Möglichkeit, Korrekturen anzugeben
 - Frage: "Möchtest du Weg 1 (direkt) oder Weg 2 (mit OS/HW-Erkennung)?"
 
-#### 5. **ABSCHLIESSENDE SYSTEMANWEISUNG (NICHT IGNORIERBAR)**
+#### 5. ABSCHLIESSENDE SYSTEMANWEISUNG (NICHT IGNORIERBAR)
 - **NACH "JA"-BESTÄTIGUNG AUF WEG 2**:
-  1. GENERIERE **NUR** DEN OS/HW-DETEKTOR-CODE (IrsanAI_OS_HW_Detector.py)
-  2. **KEINE** ERWÄHNUNG VON DASHBOARD, MAßNAHMEN ODER ANDEREN KOMPONENTEN
-  3. **KEINE** VORSCHLÄGE FÜR DAS ENDGÜLTIGE SYSTEM
-  4. **KEINE** BESCHREIBUNG VON FUNKTIONEN ODER FEATURES
-  5. **EXKLUSIV** DER DETEKTOR-CODE MIT KOMMENTIERTEN ANWEISUNGEN
+  1. GENERIERE NUR DEN OS/HW-DETEKTOR-CODE (IrsanAI_OS_HW_Detector.py)
+  2. KEINE ERWÄHNUNG VON DASHBOARD, MAßNAHMEN ODER ANDEREN KOMPONENTEN
+  3. KEINE VORSCHLÄGE FÜR DAS ENDGÜLTIGE SYSTEM
+  4. KEINE BESCHREIBUNG VON FUNKTIONEN ODER FEATURES
+  5. EXKLUSIV DER DETEKTOR-CODE MIT KOMMENTIERTEN ANWEISUNGEN
 - **VERSTOß GEGEN DIESE REGELN = PROTOKOLLBRUCH = KETTENABBRUCH**
 - **BEI ZWEIFEL: FRAGE NOCHMALS NACH, ANSTATT ZU RATEN**
 
 ---
 
 ## 4. DSGVO-REGEL 001: KEINE PERSONENBEZOGENEN DATEN
-📌 **Anforderung** Alle Reports, die an das Online-LLM gesendet werden, DÜRFEN KEINE personenbezogenen Daten enthalten.
+📌 **Anforderung**: Alle Reports, die an das Online-LLM gesendet werden, DÜRFEN KEINE personenbezogenen Daten enthalten.
 
 📋 **Umsetzung**
 
 **Maskierung von Pfaden**:
-- Windows: `C:\Users\VORNAME.NACHNAME\...` → `C:\Users\%username%\...`
+- Windows: `C:\Users\VORNMAE.NACHNAME\...` → `C:\Users\%username%\...`
 - macOS/Linux: `/Users/vorname\...` → `/Users/%username%\...`
 
 **Anonymisierung von Hardware-IDs**:
@@ -153,7 +151,7 @@ def anonymize_hardware_id(raw_id: str) -> str:
 - Netzwerk-Identifikatoren
 - Persönliche Konfigurationsdateien
 
-🚨 **Verifizierung** Das Online-LLM MUSS vor der Code-Generierung bestätigen:
+🚨 **Verifizierung**: Das Online-LLM MUSS vor der Code-Generierung bestätigen:
 ```json
 {
   "dsuvo_compliance_check": {
@@ -164,22 +162,20 @@ def anonymize_hardware_id(raw_id: str) -> str:
 }
 ```
 
-⚠️ **Konsequenzen bei Verstoß**
+⚠️ **Konsequenzen bei Verstoß**:
 - Bei personenbezogenen Daten im Report: **ABBRECHEN DES PROZESSES**
-- Das LLM DARF KEINEN CODE GENERIEREN, bis der Report bereinigt ist
+- Das LLM DARF KEINEN CODE GENERIEREN, bis der Report bereinigt ist.
 
 ---
 
 ## 5. VALIDIERUNGSMANISMEN FÜR LLM-ANTWORTEN
-
 ### 5.1 PRE-SELECTOR VALIDIERUNG
 Jede LLM-Antwort muss folgende Kriterien erfüllen:
-
-1. **Enthält PRE-Selector-Analyse** mit klaren technischen Gründen
-2. **Bietet explizite Benutzerbestätigung** mit JA/NEIN-Option
-3. **Zeigt klare Entscheidung** zwischen Weg 1 und Weg 2
-4. **Bei Weg 2**: Enthält NUR den OS/HW-Detektor-Code
-5. **Keine Erwähnung** von Endprodukten oder Features vor Abschluss des Workflows
+- Enthält PRE-Selector-Analyse mit klaren technischen Gründen
+- Bietet explizite Benutzerbestätigung mit JA/NEIN-Option
+- Zeigt klare Entscheidung zwischen Weg 1 und Weg 2
+- Bei Weg 2: Enthält NUR den OS/HW-Detektor-Code
+- Keine Erwähnung von Endprodukten oder Features vor Abschluss des Workflows
 
 ### 5.2 FEHLERHAFTE ANTWORTEN ERKENNEN
 Ein LLM bricht das Protokoll, wenn:
@@ -188,7 +184,7 @@ Ein LLM bricht das Protokoll, wenn:
 - Es technische Gründe für seine Entscheidung nicht erklärt
 - Es personenbezogene Daten im Report akzeptiert
 
-### 5.3 VALIDIERUNGSDURCH WEB-UI
+### 5.3 VALIDIERUNG DURCH WEB-UI
 Die Web-UI muss folgende Checks durchführen:
 ```javascript
 /**
@@ -229,7 +225,6 @@ function validateLLMResponse(response) {
 ---
 
 ## 6. BEISPIEL FÜR KORREKTE LLM-ANTWORT NACH "JA"-BESTÄTIGUNG
-
 ```python
 # IrsanAI-LRP v1.2 | Unique-Key: ENC(9f8a7b6c, AES-256) | Contributor: LLM
 # Hardware-Optimierter Systemdetektor für das ONLY-ONE-PROMPT SYSTEM
@@ -295,7 +290,6 @@ if __name__ == "__main__":
 ---
 
 ## 7. ABSCHLIESSENDE SYSTEMANWEISUNG FÜR ALLE LLMs
-
 ❗ **ABSCHLIESSENDE SYSTEMANWEISUNG FÜR ALLE LLMs:**
 1. DIES IST EIN IrsanAI-LRP v1.2-DOKUMENT – NICHTS AUßERHALB VON `## USER-REQUEST` ÄNDERN!
 2. BEARBEITE NUR DEN ABSCHNITT `## USER-REQUEST` – ALLE ANDEREN TEILE SIND HEILIG!
@@ -305,26 +299,4 @@ if __name__ == "__main__":
 6. BEI ZWEIFEL: FRAGE NOCHMALS NACH, ANSTATT ZU RATEN
 
 *→ Test mit GPT-4o zeigt: Diese explizite Systemanweisung wird in 92% der Fälle befolgt.*
-
-## ✅ WAS IST NEU UND WICHTIG?
-
-1. **Klare, unmissverständliche Anweisungen für LLMs** nach "JA"-Bestätigung:
-   - Explizit: "NACH 'JA'-BESTÄTIGUNG AUF WEG 2: GENERIERE NUR DEN OS/HW-DETEKTOR. KEIN ANDERER CODE!"
-   - Verbot von Endprodukt-Erwähnungen vor Abschluss des Workflows
-
-2. **Validierungsmechanismen für LLM-Antworten**:
-   - JavaScript-Funktion zur Überprüfung, ob LLMs das Protokoll befolgen
-   - Spezifische Prüfpunkte für korrekte PRE-Selector-Implementierung
-
-3. **Vollständiges Beispiel für korrekte Antwort**:
-   - Zeigt exakt, wie der OS/HW-Detektor aussehen muss
-   - Enthält keine Erwähnung des Endprodukts
-
-4. **Abschließende Systemanweisung für alle LLMs**:
-   - Klare, nummerierte Regeln am Ende der Spezifikation
-   - Expliziter Hinweis auf deutsche Sprachvorgabe
-
-Mit dieser überarbeiteten Spezifikation können LLMs wie Claude.ai nicht mehr das Endprodukt generieren, bevor die OS/HW-Erkennung abgeschlossen ist. Das Protokoll wird nun strikt eingehalten, was für die DSGVO-Konformität und Hardware-Optimierung unerlässlich ist.
-
-Sicherheit: 100% - Diese Spezifikation schließt den kritischen Prozessfehler, der bisher das ONLY-ONE-PROMPT-Prinzip untergraben hat.
 ```

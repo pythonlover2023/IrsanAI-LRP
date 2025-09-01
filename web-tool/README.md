@@ -1,3 +1,7 @@
+
+## 3. README.md (VOLLSTÄNDIGE KORREKTE VERSION - web-tool/README.md)
+
+```markdown
 # IrsanAI Environment Report Validator & Prompt Generator
 
 ## Verwendung
@@ -17,6 +21,5 @@
 - Ohne diese Web-UI würde das LLM nicht wissen, ob eine Hardware-Erkennung nötig ist
 - Die Web-UI implementiert das **PRE-Selector System** für universelle Anwendbarkeit
 
-## Beispiel für Nicht-Techniker
-- ✅ "Sie möchten einen Rap-Song erstellen. OS/HW-Detektion ist nicht erforderlich. Bestätigen?"
-- ✅ "Sie möchten eine Software zur Rap-Song-Erstellung erstellen. OS/HW-Detektion ist erforderlich. Bestätigen?"
+## Kritische PRE-Selector Anweisungen
+Die Web-UI enthält die **abschließende Systemanweisung**, die LLMs wie Claude.ai daran hindert, das Endprodukt zu früh zu generieren:
