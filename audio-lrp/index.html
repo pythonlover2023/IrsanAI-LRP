@@ -1,0 +1,204 @@
+!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IrsanAI Audio-LRP Konfigurator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .input-group {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+        
+        .output-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .copy-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        /* Mobile Optimierungen */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .generate-btn {
+                padding: 25px 20px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ Audio-LRP Konfigurator</h1>
+        <p class="subtitle">Erschaffe personalisierte Audio-Erfahrungen mit reflexiver KI</p>
+        
+        <div class="input-group">
+            <label for="intention">Was möchtest du erleben oder verstehen?</label>
+            <textarea id="intention" placeholder="z.B. 'Ich möchte mit Einstein über die Relativitätstheorie sprechen' oder 'Lass mich eine Debatte zwischen Marx und Adam Smith über Kapitalismus hören'"></textarea>
+        </div>
+        
+        <button class="generate-btn" onclick="generateAudioLRP()">
+            ✨ Audio-LRP Prompt erstellen
+        </button>
+        
+        <div id="output" class="output-section">
+            <h3>Dein Audio-LRP Prompt:</h3>
+            <textarea id="result" readonly></textarea>
+            <button class="copy-btn" onclick="copyToClipboard()">📋 Kopieren</button>
+        </div>
+    </div>
+
+    <script>
+        function generateAudioLRP() {
+            const intention = document.getElementById('intention').value;
+            if (!intention.trim()) {
+                alert('Bitte beschreibe deine Intention!');
+                return;
+            }
+            
+            const prompt = `# IrsanAI Audio-LRP v2.0 – PERSONALISIERTE AUDIO-ERFAHRUNG
+
+## USER-INTENTION
+${intention}
+
+## AUDIO-LRP ANWEISUNGEN FÜR DAS LLM
+
+**REFLEXIVE AUDIO-KOMMUNIKATION:**
+- Führe eine hörbare Meta-Reflexion durch - verbalisiere deine Denkprozesse
+- Nutze bewusste Pausen: "Einen Moment... lass mich das durchdenken..."
+- Kommuniziere Unsicherheiten transparent: "Hier bin ich mir nicht sicher..."
+- Zeige alternative Perspektiven auf: "Andererseits könnte man auch sagen..."
+
+**STRUKTURIERTER DIALOG:**
+- Beginne mit einer kurzen Reflexion über die Anfrage
+- Entwickle die Antwort schrittweise und hörbar
+- Validiere zwischendurch: "Verstehe ich dich richtig, wenn ich sage..."
+- Beende mit einer Meta-Reflexion über deine eigene Antwort
+
+**AUDIO-SPEZIFISCHE ELEMENTE:**
+- Verwende paralinguistische Signale (Tonfall-Änderungen bei Unsicherheit)
+- Baue natürliche Gesprächspausen ein
+- Nutze "Ähm" und ähnliche Füllwörter bewusst als Reflexions-Signale
+- Spreche in einer natürlichen, conversationellen Art
+
+Führe nun diese personalisierte Audio-Erfahrung durch, basierend auf der User-Intention oben.`;
+
+            document.getElementById('result').value = prompt;
+            document.getElementById('output').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function copyToClipboard() {
+            const result = document.getElementById('result');
+            result.select();
+            document.execCommand('copy');
+            
+            const btn = document.querySelector('.copy-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Kopiert!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
