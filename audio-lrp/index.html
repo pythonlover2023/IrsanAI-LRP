@@ -135,7 +135,10 @@
             <label for="intention">Was möchtest du erleben oder verstehen?</label>
             <textarea id="intention" placeholder="z.B. 'Ich möchte mit Einstein über die Relativitätstheorie sprechen' oder 'Lass mich eine Debatte zwischen Marx und Adam Smith über Kapitalismus hören'"></textarea>
         </div>
-        
+        <div class="input-group">
+    <label for="codewort">Codewort für Audio-Start:</label>
+    <input type="text" id="codewort" placeholder="VERBINDEN eingeben" style="...">
+        </div>
         <button class="generate-btn" onclick="generateAudioLRP()">
             ✨ Audio-LRP Prompt erstellen
         </button>
@@ -149,56 +152,48 @@
 
     <script>
         function generateAudioLRP() {
-            const intention = document.getElementById('intention').value;
-            if (!intention.trim()) {
-                alert('Bitte beschreibe deine Intention!');
-                return;
-            }
-            
-            const prompt = `# IrsanAI Audio-LRP v2.0 – PERSONALISIERTE AUDIO-ERFAHRUNG
+    const intention = document.getElementById('intention').value;
+    const codewort = document.getElementById('codewort').value;
+    
+    if (!intention.trim()) {
+        alert('Bitte beschreibe deine Intention!');
+        return;
+    }
+    
+    if (!codewort.trim() || codewort.toLowerCase().trim() !== 'verbinden') {
+        alert('Bitte Codewort "VERBINDEN" eingeben!');
+        return;
+    }
+    
+    const prompt = `# IrsanAI Audio-LRP v2.1 – CODEWORT-AKTIVIERTES PROTOKOLL
 
 ## USER-INTENTION
 ${intention}
 
-## AUDIO-LRP ANWEISUNGEN FÜR DAS LLM
+## SETUP-PROTOKOLL
+1. Erstelle strukturierte Zusammenfassung als Tabelle mit Emojis
+2. Warte auf Audio-Codewort "VERBINDEN" vom User
+3. Erst dann: Beginne reflexive Audio-Experience
 
-**REFLEXIVE AUDIO-KOMMUNIKATION:**
-- Führe eine hörbare Meta-Reflexion durch - verbalisiere deine Denkprozesse
-- Nutze bewusste Pausen: "Einen Moment... lass mich das durchdenken..."
-- Kommuniziere Unsicherheiten transparent: "Hier bin ich mir nicht sicher..."
-- Zeige alternative Perspektiven auf: "Andererseits könnte man auch sagen..."
+## TABELLEN-FORMAT
+| Aspekt | Details |
+|--------|---------|
+| 🎯 Szenario | [Kurzbeschreibung der Situation] |
+| 👤 Persona(s) | [Wer wird simuliert/dargestellt] |
+| 🕐 Zeitkontext | [Zeitperiode/Alter der Person] |
+| 💬 Interaktion | [Art des gewünschten Gesprächs] |
+| 🎙️ Audio-Modus | Warte auf "VERBINDEN" |
 
-**STRUKTURIERTER DIALOG:**
-- Beginne mit einer kurzen Reflexion über die Anfrage
-- Entwickle die Antwort schrittweise und hörbar
-- Validiere zwischendurch: "Verstehe ich dich richtig, wenn ich sage..."
-- Beende mit einer Meta-Reflexion über deine eigene Antwort
+Nach Tabellen-Erstellung: **[IrsanAI - Audio LRP]**
+Sage "VERBINDEN" um die Audio-Experience zu starten.`;
 
-**AUDIO-SPEZIFISCHE ELEMENTE:**
-- Verwende paralinguistische Signale (Tonfall-Änderungen bei Unsicherheit)
-- Baue natürliche Gesprächspausen ein
-- Nutze "Ähm" und ähnliche Füllwörter bewusst als Reflexions-Signale
-- Spreche in einer natürlichen, conversationellen Art
-
-Führe nun diese personalisierte Audio-Erfahrung durch, basierend auf der User-Intention oben.`;
-
-            document.getElementById('result').value = prompt;
-            document.getElementById('output').style.display = 'block';
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function copyToClipboard() {
-            const result = document.getElementById('result');
-            result.select();
-            document.execCommand('copy');
-            
-            const btn = document.querySelector('.copy-btn');
-            const originalText = btn.textContent;
-            btn.textContent = '✅ Kopiert!';
-            setTimeout(() => {
-                btn.textContent = originalText;
-            }, 2000);
-        }
+    document.getElementById('result').value = prompt;
+    document.getElementById('output').style.display = 'block';
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    
+    // Feedback für erfolgreiche Codewort-Eingabe
+    alert('✅ Codewort akzeptiert - Audio-LRP Protokoll generiert!');
+}
     </script>
 </body>
 </html>
