@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IrsanAI Audio-LRP Konfigurator</title>
+    <title>IrsanAI Audio-LRP Konfigurator v2.2</title>
     <style>
         * {
             box-sizing: border-box;
@@ -52,18 +52,21 @@
             color: #333;
         }
         
-        textarea {
+        textarea, input, select {
             width: 100%;
-            min-height: 120px;
             padding: 15px;
             border: 2px solid #ddd;
             border-radius: 10px;
             font-size: 1.1rem;
-            resize: vertical;
             transition: border-color 0.3s;
         }
         
-        textarea:focus {
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        textarea:focus, input:focus, select:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -108,6 +111,30 @@
             cursor: pointer;
         }
         
+        .timer-controls {
+            display: none;
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .timer-controls input[type="number"] {
+            width: 80px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        .stop-btn {
+            background: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
         /* Mobile Optimierungen */
         @media (max-width: 480px) {
             .container {
@@ -128,17 +155,34 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎙️ Audio-LRP Konfigurator</h1>
+        <h1>🎙️ Audio-LRP Konfigurator v2.2</h1>
         <p class="subtitle">Erschaffe personalisierte Audio-Erfahrungen mit reflexiver KI</p>
         
         <div class="input-group">
             <label for="intention">Was möchtest du erleben oder verstehen?</label>
             <textarea id="intention" placeholder="z.B. 'Ich möchte mit Einstein über die Relativitätstheorie sprechen' oder 'Lass mich eine Debatte zwischen Marx und Adam Smith über Kapitalismus hören'"></textarea>
         </div>
+        
         <div class="input-group">
-    <label for="codewort">Codewort für Audio-Start:</label>
-    <input type="text" id="codewort" placeholder="VERBINDEN eingeben" style="...">
+            <label for="communicationMode">Kommunikationsmodus:</label>
+            <select id="communicationMode" onchange="toggleTimerControls()">
+                <option value="interactive">🎯 Interaktiv (Du nimmst teil)</option>
+                <option value="guided">🎪 Moderiert (KI führt zwischen Charakteren)</option>
+                <option value="autonomous">🔄 Autonom (Endlos zum Zuhören)</option>
+            </select>
         </div>
+        
+        <div class="input-group">
+            <label for="customCodewort">Dein Zauberwort:</label>
+            <input type="text" id="customCodewort" placeholder="z.B. SHOWTIME, MAGIC, ACTION, VERBINDEN...">
+        </div>
+        
+        <div id="timerControls" class="timer-controls">
+            <label for="timer">⏰ Auto-Stop nach:</label>
+            <input type="number" id="timer" min="1" max="30" value="15"> Minuten
+            <button class="stop-btn" onclick="emergencyStop()">⏹️ Notfall-Stop</button>
+        </div>
+        
         <button class="generate-btn" onclick="generateAudioLRP()">
             ✨ Audio-LRP Prompt erstellen
         </button>
@@ -151,49 +195,82 @@
     </div>
 
     <script>
+        function toggleTimerControls() {
+            const mode = document.getElementById('communicationMode').value;
+            const timerControls = document.getElementById('timerControls');
+            timerControls.style.display = (mode === 'autonomous') ? 'block' : 'none';
+        }
+        
+        function emergencyStop() {
+            alert('⏹️ Audio-Session gestoppt! Du kannst jederzeit neu starten.');
+        }
+        
         function generateAudioLRP() {
-    const intention = document.getElementById('intention').value;
-    const codewort = document.getElementById('codewort').value;
-    
-    if (!intention.trim()) {
-        alert('Bitte beschreibe deine Intention!');
-        return;
-    }
-    
-    if (!codewort.trim() || codewort.toLowerCase().trim() !== 'verbinden') {
-        alert('Bitte Codewort "VERBINDEN" eingeben!');
-        return;
-    }
-    
-    const prompt = `# IrsanAI Audio-LRP v2.1 – CODEWORT-AKTIVIERTES PROTOKOLL
+            const intention = document.getElementById('intention').value;
+            const customCodewort = document.getElementById('customCodewort').value;
+            const mode = document.getElementById('communicationMode').value;
+            
+            if (!intention.trim()) {
+                alert('Bitte beschreibe deine Intention!');
+                return;
+            }
+            
+            if (!customCodewort.trim()) {
+                alert('Bitte gib dein Zauberwort ein!');
+                return;
+            }
+            
+            const modeInstructions = {
+                interactive: "User nimmt aktiv am Gespräch teil. Reagiere auf User-Input, stelle Rückfragen und involviere den User direkt in den Dialog.",
+                guided: "Moderiere zwischen den definierten Charakteren. Stelle durchdachte Fragen, die das Gespräch vorantreiben und verschiedene Perspektiven beleuchten.",
+                autonomous: "Führe vollständige, natürliche Dialoge zwischen allen Charakteren. User hört zu. Nach 15 Minuten automatische Pause mit Hinweis."
+            };
+            
+            const prompt = `# IrsanAI Audio-LRP v2.2 – ERWEITERTE KOMMUNIKATIONSMODI
 
 ## USER-INTENTION
 ${intention}
 
+## KOMMUNIKATIONSMODUS
+**${mode.toUpperCase()}**: ${modeInstructions[mode]}
+
 ## SETUP-PROTOKOLL
 1. Erstelle strukturierte Zusammenfassung als Tabelle mit Emojis
-2. Warte auf Audio-Codewort "VERBINDEN" vom User
-3. Erst dann: Beginne reflexive Audio-Experience
+2. Warte auf Audio-Codewort "${customCodewort.toUpperCase()}"
+3. Starte entsprechend dem gewählten Kommunikationsmodus
 
 ## TABELLEN-FORMAT
 | Aspekt | Details |
 |--------|---------|
 | 🎯 Szenario | [Kurzbeschreibung der Situation] |
 | 👤 Persona(s) | [Wer wird simuliert/dargestellt] |
-| 🕐 Zeitkontext | [Zeitperiode/Alter der Person] |
+| 🕐 Zeitkontext | [Zeitperiode/Alter der Person(en)] |
 | 💬 Interaktion | [Art des gewünschten Gesprächs] |
-| 🎙️ Audio-Modus | Warte auf "VERBINDEN" |
+| 🎙️ Modus | ${mode.charAt(0).toUpperCase() + mode.slice(1)} |
+| ⚡ Aktivierung | Warte auf "${customCodewort.toUpperCase()}" |
 
-Nach Tabellen-Erstellung: **[IrsanAI - Audio LRP]**
-Sage "VERBINDEN" um die Audio-Experience zu starten.`;
+Nach Tabellen-Erstellung: **[IrsanAI - Audio LRP v2.2]**
+Sage "${customCodewort.toUpperCase()}" um die ${mode}e Audio-Experience zu starten.`;
 
-    document.getElementById('result').value = prompt;
-    document.getElementById('output').style.display = 'block';
-    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-    
-    // Feedback für erfolgreiche Codewort-Eingabe
-    alert('✅ Codewort akzeptiert - Audio-LRP Protokoll generiert!');
-}
+            document.getElementById('result').value = prompt;
+            document.getElementById('output').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+            
+            alert('✅ Audio-LRP v2.2 Protokoll generiert!');
+        }
+        
+        function copyToClipboard() {
+            const result = document.getElementById('result');
+            result.select();
+            document.execCommand('copy');
+            
+            const btn = document.querySelector('.copy-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Kopiert!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
     </script>
 </body>
 </html>
